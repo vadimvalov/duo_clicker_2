@@ -12,6 +12,10 @@ body {
   background-color: #ffe5b4;
 }
 
+.border-brown-600 {
+        border-color: #964B00;
+      }
+
 #cat-pic {
   width: 50px;
   height: 50px;
