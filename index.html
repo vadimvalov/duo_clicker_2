@@ -16,21 +16,54 @@
         </div>
         <div class="w-1/4 bg-yellow-300 border-l-4 border-brown-600 p-4">
             <h1 class="text-center mb-4 font-bold text-xl">Shop</h1>
-            
+            <button type="button" onClick="purchaseBuff(0, 100)" class="button-5 small-box" style="width: 50vh; height: 12vh; margin-bottom: 2vh; padding-right: 1vh; padding-left: 2.7vh">
+                <img src="box.svg" style="height: 5vh; width: 5vh; margin-right: 0; margin-left: 0;"/> 
+                <div style="width: 50%; float: left; margin-right: 6vh;">
+                    <p>Small Box </br> (+10 clicks)</p>
+                </div>
+                <p class="cost" style="width: 50%; float: right;">100 clicks</p>
+            </button>
+            <button type="button" onClick="purchaseBuff(1, 200)" class="button-5 small-mouse" style="width: 50vh; height: 12vh; margin-bottom: 2vh; padding-right: 1vh; padding-left: 2.7vh">
+                <img src="mouse.svg" style="height: 5vh; width: 5vh; margin-right: 0; margin-left: 0;"/> 
+                <div style="width: 50%; float: left; margin-right: 6vh;">
+                    <p>Small Mouse </br> (+10 clicks per second)</p>
+                </div>
+                <p class="cost" style="width: 50%; float: right;">200 clicks</p>
+            </button>
           </div>
 </body>
 </html>
 
 <script>
     let clickCount = 0;
+    let clickBuff = 0;
+    let clickBuffPerSecond = 0;
+    const purchaseBuff = (buffIndex, buffCost) => {
+        if (clickCount >= buffCost) {
+            if (buffIndex === 0) {
+                clickBuff += 10;
+            }
+            else if (buffIndex == 1) {
+                clickBuffPerSecond += 10;
+            }
+            clickCount -= buffCost;
+        }
+    }
+
     const catClick = () => {
         const catPic = document.getElementById("cat-pic");
         catPic.classList.remove('heartbeat');
         void catPic.offsetWidth;
         catPic.classList.add('heartbeat');
         clickCount++;
+        clickCount += clickBuff;
         const clicks = document.getElementById("clicks");
         clicks.innerText = 'Clicks: ' + clickCount;
-        // alert('hehe');
     }
+
+    setInterval(function() {
+        clickCount += clickBuffPerSecond;
+        const clicks = document.getElementById("clicks");
+        clicks.innerText = 'Clicks: ' + clickCount;
+    }, 1000)
 </script>
