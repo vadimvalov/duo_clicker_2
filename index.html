@@ -44,7 +44,8 @@
                 clickBuff += 10;
             }
             else if (buffIndex == 1) {
-                clickBuffPerSecond += 10;
+<!--for test purposes only! fix before release!!!!!!!!!!!!!!!!!!!!!! (not 100!)-->
+                clickBuffPerSecond += 100; 
             }
             clickCount -= buffCost;
         }
@@ -65,5 +66,5 @@
         clickCount += clickBuffPerSecond;
         const clicks = document.getElementById("clicks");
         clicks.innerText = 'Clicks: ' + clickCount;
-    }, 1000)
+    }, 100)
 </script>
